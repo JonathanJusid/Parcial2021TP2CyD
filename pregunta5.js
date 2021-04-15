@@ -20,3 +20,19 @@ const beers = [
     { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
 ];
 
+const actualizarBeers = (beers) => {
+  const newRepo = 'https://tecnoshare.sharepoint.com/sites/beer/';
+
+  beers.forEach(beer => {
+      const repo = beer.label.split( '/' );
+      const carpeta = repo[repo.length - 2];
+      const nombre = beer.name.toLowerCase().replace(/\s/g, '-');
+
+      beer.label = newRepo + carpeta + '/' + nombre + '.png';
+  });
+
+  return beers;
+};
+
+console.log(actualizarBeers(beers));
+
